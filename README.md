@@ -1,5 +1,8 @@
 Theodore Wu: This repo is a clone of https://github.com/ECE444-2022Fall/Assignment_1_starter_template.
 
+**Lab3 Activity 2**
+![](lab_images/Docker_Version.png)
+
 # Assignment 1: Education Pathway
 
 This is a modified version of the previous Assignment1 template.
