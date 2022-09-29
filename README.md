@@ -6,6 +6,10 @@ Theodore Wu: This repo is a clone of https://github.com/ECE444-2022Fall/Assignme
 **Lab3 Activity 3**
 ![](lab_images/EP_Local.png)
 
+**Lab3 Activity 3**
+![](lab_images/Docker_BuildLog.png)
+![](lab_images/EP_Docker.png)
+
 # Assignment 1: Education Pathway
 
 This is a modified version of the previous Assignment1 template.
