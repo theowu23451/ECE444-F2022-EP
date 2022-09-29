@@ -6,7 +6,8 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import requisite_label from './img/requisite-label.png'
 import empty_star from './img/star.png'
-import API from '../api';
+import starred from './img/starred.png'
+import axios from "axios"
 
 let star = empty_star;
 
@@ -35,11 +36,13 @@ class CourseDescriptionPage extends Component {
 
 
   componentDidMount() {
-    API.get(`/course/details?code=${this.props.match.params.code}`, {
+    console.log("pass in course code: ", this.props.match.params.code)
+
+    axios.get(`https://assignment-1-starter-template.herokuapp.com/course/details?code=${this.props.match.params.code}`, {
       code: this.props.course_code
     })
       .then(res => {
-        console.log(res.data.course)
+        console.log(res.data)
         this.setState({course_code: res.data.course.code})
         this.setState({course_name: res.data.course.name})
         this.setState({course_description : res.data.course.description})

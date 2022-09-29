@@ -4,7 +4,6 @@ import Result from './Results'
 import './css/Result.css'
 import Label from './Label'
 import "./css/styles.css";
-import API from '../api';
 
 
 class SearchResultDisplay extends Component{
@@ -29,30 +28,29 @@ class SearchResultDisplay extends Component{
   }
 
   getData = (input) => {
-    API.get(`/searchc?input=${input}`)
+    axios.get(`https://assignment-1-starter-template.herokuapp.com/searchc?input=${input}`)
       .then(res => {
+        console.log(`it is ${res.status}`)
         if (res.status === 200) {
           this.setState({results: []})
-          console.log(res.data.length)
+          
           if (res.data.length > 0) {
             let len = res.data.length
             let result_temp = []
             result_temp.push(<Label></Label>)
             for (let i = 0; i < len; i++) {
-                result_temp.push(<Result key={res.data[i]._id} course_code={res.data[i].code} course_name={res.data[i].name}></Result>)
+                result_temp.push(<Result course_code={res.data[i].code} course_name={res.data[i].name}></Result>)
             }
             this.setState({results: result_temp})
-          } 
-          else
-            if (res.data.length === 0) {
-              alert("Course not found")
-            }
-            else {
-              let result_temp = []
-              result_temp.push(<Label></Label>)
-              result_temp.push(<Result key={res.data.course._id} course_code={res.data.course.code} course_name={res.data.course.name}></Result>)
-              this.setState({results: result_temp})
-            }
+          } else if (res.data.length === 0) {
+            alert("Course not found")
+          }else {
+            let result_temp = []
+            result_temp.push(<Label></Label>)
+            result_temp.push(<Result course_code={res.data.course.code} course_name={res.data.course.name}></Result>)
+            this.setState({results: result_temp})
+          }
+
         } else if (res.status === 400) {
           alert("System Error. Please refresh")
         }
@@ -100,7 +98,7 @@ We are looking for feedback to improve Education Pathways and make it more usefu
 
       </div> */}
             <form onSubmit={this.handleSubmit} className={"search"}>
-                <input placeholder={"Search for course code"} className={"text-input"} type="text" value={this.state.input} onChange={this.handleChange} />
+                <input placeholder={"Search for course code, course name, keyword ..."} className={"text-input"} type="text" value={this.state.input} onChange={this.handleChange} />
                 <input type="submit" value="Search" className={"submit-button"}/>
             </form>
         </div>
